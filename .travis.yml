@@ -20,3 +20,16 @@ after_success:
   - docker push darglk/multi-nginx
   - docker push darglk/multi-server
   - docker push darglk/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-1-407417679369
+  bucket_path: docker-multi
+  on:
+    branch: master
+  acess_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
